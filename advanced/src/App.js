@@ -42,7 +42,7 @@ class App extends Component {
 
   render() {
     if (this.state.preloader) {
-      return <Spinner msg="Fetching Data..." />;
+      return <Spinner msg="Loading..." />;
     }
 
     return (
