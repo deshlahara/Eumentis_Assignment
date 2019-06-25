@@ -29,6 +29,7 @@ class Map extends React.Component {
             unique={x.id}
             name={x.name}
             deleteLogic={this.props.deleteLogic}
+            hideName={this.props.hideName}
           />
         </Col>
       );

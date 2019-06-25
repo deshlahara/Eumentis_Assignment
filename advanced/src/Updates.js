@@ -14,7 +14,7 @@ const Updates = Form.create()(
       const { getFieldDecorator } = form; // getFieldDecorator is a function to define form elements
       // const { name, email, phone, website } = this.props.data;
 
-      const { name, email, phone, website } = this.props.data;
+      var { name, email, phone, website } = this.props.data;
 
       return (
         <Modal
@@ -28,33 +28,51 @@ const Updates = Form.create()(
         >
           <Form centered layout="inline">
             <Form.Item label="Name: ">
-              {getFieldDecorator("name", {
-                rules: [{ required: true, message: "Please enter your Name !" }]
-              })(<Input placeholder={name} />)}
+              {getFieldDecorator(
+                "name",
+                { initialValue: name },
+                {
+                  rules: [
+                    { required: true, message: "Please enter your Name !" }
+                  ]
+                }
+              )(<Input />)}
             </Form.Item>
 
             <Form.Item label="Email: ">
-              {getFieldDecorator("email", {
-                rules: [
-                  { required: true, message: "Please enter your email !" }
-                ]
-              })(<Input placeholder={email} />)}
+              {getFieldDecorator(
+                "email",
+                { initialValue: email },
+                {
+                  rules: [
+                    { required: true, message: "Please enter your email !" }
+                  ]
+                }
+              )(<Input />)}
             </Form.Item>
 
             <Form.Item label="Phone: ">
-              {getFieldDecorator("phone", {
-                rules: [
-                  { required: true, message: "Please enter your phone !" }
-                ]
-              })(<Input placeholder={phone} />)}
+              {getFieldDecorator(
+                "phone",
+                { initialValue: phone },
+                {
+                  rules: [
+                    { required: true, message: "Please enter your phone !" }
+                  ]
+                }
+              )(<Input />)}
             </Form.Item>
 
             <Form.Item label="Website: ">
-              {getFieldDecorator("website", {
-                rules: [
-                  { required: true, message: "Please enter your website !" }
-                ]
-              })(<Input placeholder={website} />)}
+              {getFieldDecorator(
+                "website",
+                { initialValue: website },
+                {
+                  rules: [
+                    { required: true, message: "Please enter your website !" }
+                  ]
+                }
+              )(<Input />)}
             </Form.Item>
           </Form>
         </Modal>

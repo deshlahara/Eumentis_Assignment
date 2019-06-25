@@ -35,17 +35,58 @@ class FakeCard extends Component {
       name: name, // name on RHS is the JSON data prop that's destructured
       email: email,
       phone: phone,
-      website: website
+      website: website,
+      hideName: name,
+      showName: true,
+      showEmail: true,
+      showPhone: true,
+      showWeb: true,
+      showImg: true
     };
   }
   // state = {icon: <Icon type="heart" theme="twoTone" twoToneColor="red" />}
   // const {}
 
   onIconClick = e => {
-    e.preventDefault();
+    // e.preventDefault();
     this.setState(state => ({
       // state is a callback that is called and checks the current state of the icon anf toggles it
       toggle: !state.toggle // this sees the toggle state as TRUE / FALSE and re-renders the state as per state
+    }));
+  };
+
+  hideName = n => {
+    // n.preventDefault();
+    this.setState(nameState => ({
+      showName: !nameState.showName
+    }));
+  };
+
+  hideEmail = e => {
+    // e.preventDefault();
+    this.setState(emailState => ({
+      showEmail: !emailState.showEmail
+    }));
+  };
+
+  hidePhone = p => {
+    // p.preventDefault();
+    this.setState(phoneState => ({
+      showPhone: !phoneState.showPhone
+    }));
+  };
+
+  hideWeb = w => {
+    // w.preventDefault();
+    this.setState(webState => ({
+      showWeb: !webState.showWeb
+    }));
+  };
+
+  hideImage = i => {
+    // i.preventDefault();
+    this.setState(imgState => ({
+      showImg: !imgState.showImg
     }));
   };
 
@@ -94,6 +135,24 @@ class FakeCard extends Component {
 
   render() {
     // const { name, email, phone, website } = this.props.data; // destructuring the props data
+    const profile = (
+      <img
+        style={{ backgroundColor: "#F5F5F5" }}
+        alt="example"
+        src={`https://avatars.dicebear.com/v2/avataaars/${
+          this.props.data.username
+        }.svg?options[mood][]=happy`}
+      />
+    );
+    const profileThen = (
+      <img
+        className="ant-card-cover"
+        width="258px"
+        height="258px"
+        style={{ backgroundColor: "#F5F5F5" }}
+        alt=""
+      />
+    );
 
     return (
       <Row justify="center">
@@ -101,22 +160,15 @@ class FakeCard extends Component {
           <Card
             className="shadow-sm"
             style={{ width: "260px" }}
-            cover={
-              <img
-                style={{ backgroundColor: "#F5F5F5" }}
-                alt="example"
-                src={`https://avatars.dicebear.com/v2/avataaars/${
-                  this.props.data.username
-                }.svg?options[mood][]=happy`}
-              />
-            }
+            cover={this.state.showImg ? profile : profileThen}
             actions={[
               // this checks state of icon and toggles it as per the boolean value
+
               <Icon
                 type="heart"
-                theme={this.state.toggle ? "twoTone" : "filled"}
+                theme={this.state.toggle ? "outlined" : "filled"}
+                style={{ color: "red" }}
                 twoToneColor="red"
-                fill={this.state.toggle ? "red" : "red"}
                 onClick={e => this.onIconClick(e)}
               />,
 
@@ -130,6 +182,12 @@ class FakeCard extends Component {
                 type="delete"
                 theme="filled"
                 onClick={() => this.props.deleteLogic(this.props.name)}
+              />,
+
+              <Icon
+                type="eye"
+                theme={this.state.showImg ? "outlined" : "filled"}
+                onClick={i => this.hideImage(i)}
               />
             ]}
 
@@ -150,20 +208,74 @@ class FakeCard extends Component {
               cancelLogic={this.cancelLogic}
               updateLogic={this.updateLogic}
               data={this.props.data}
+              name={this.props.data.name}
+              email={this.props.data.email}
+              phone={this.props.data.phone}
+              website={this.props.data.website}
             />
 
-            <Meta className="mb-1" title={this.state.name} />
+            <Row>
+              <Col span={22}>
+                <Meta
+                  className="mb-1"
+                  title={this.state.showName ? this.state.name : null}
+                />
+              </Col>
+              <Col span={2}>
+                <Meta
+                  className="pt-1"
+                  avatar={[<Icon type="eye" />]}
+                  onClick={n => this.hideName(n)}
+                />
+              </Col>
+            </Row>
 
             <Row>
-              <Col span={4}>
-                <Meta className="pt-1" avatar={[<Icon type="mail" />]} />
-                <Meta className="pt-1" avatar={[<Icon type="phone" />]} />
-                <Meta className="pt-1" avatar={[<Icon type="global" />]} />
+              <Col span={2}>
+                <Meta
+                  className="pt-1 d-block"
+                  avatar={this.state.showEmail ? [<Icon type="mail" />] : null}
+                />
+                <Meta
+                  className="pt-1"
+                  avatar={this.state.showPhone ? [<Icon type="phone" />] : null}
+                />
+                <Meta
+                  className="pt-1"
+                  avatar={this.state.showWeb ? [<Icon type="global" />] : null}
+                />
               </Col>
               <Col span={20} style={fancy}>
-                <Meta className="pt-2" avatar={this.state.email} />
-                <Meta className="pt-2" avatar={this.state.phone} />
-                <Meta className="pt-2" avatar={this.state.website} />
+                <Meta
+                  className="pt-2"
+                  avatar={this.state.showEmail ? this.state.email : null}
+                />
+                <Meta
+                  className="pt-2"
+                  avatar={this.state.showPhone ? this.state.phone : null}
+                />
+                <Meta
+                  className="pt-2"
+                  avatar={this.state.showWeb ? this.state.website : null}
+                />
+              </Col>
+
+              <Col span={2}>
+                <Icon
+                  className="mt-1"
+                  type="eye"
+                  onClick={e => this.hideEmail(e)}
+                />
+                <Icon
+                  className="mt-1"
+                  type="eye"
+                  onClick={p => this.hidePhone(p)}
+                />
+                <Icon
+                  className="mt-1"
+                  type="eye"
+                  onClick={w => this.hideWeb(w)}
+                />
               </Col>
             </Row>
           </Card>

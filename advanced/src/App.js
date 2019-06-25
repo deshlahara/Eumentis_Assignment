@@ -30,15 +30,17 @@ class App extends Component {
   };
 
   // THIS IS AN APPLICATION OF LIFTING THE STATE UP
-  deleteLogic = () => {
+  deleteLogic = allCards => {
     // SLICE MEANS TO DELETE THE CURRENT AND SHOW THE REST
     // this is amazing. slice() method actually slices the itmes in array.
     // if 1 is passed as arg, then it deletes / slices the 1st value and returns the array of remaining items
-    const cards = this.state.data.slice(1); // currentCard => currentCard.name !== allCards
+    const cards = this.state.data.filter(e => e.name !== allCards); // currentCard => currentCard.name !== allCards
     this.setState({
       data: [...cards]
     });
   };
+
+  hideName = n => {};
 
   render() {
     if (this.state.preloader) {
@@ -58,6 +60,7 @@ class App extends Component {
           apiData={this.state.data}
           deleteLogic={this.deleteLogic}
           unique={this.state.data.id}
+          hideName={this.hideName}
         />
       </div>
     );
