@@ -5,7 +5,7 @@ import { Col } from "antd";
 class Map extends React.Component {
 
   render() {
-    const info = this.props.apiData.map(x => {
+    return this.props.apiData.map(x => {
       return (
         <Col
           key={x.id}
@@ -22,7 +22,7 @@ class Map extends React.Component {
           {/* this.props.deleteLogic uses prop to refer to its parent */}
           <FakeCard
             data={x}
-            unique={x.id}
+            id={x.id}
             name={x.name}
             deleteLogic={this.props.deleteLogic}
             hideName={this.props.hideName}
@@ -30,8 +30,6 @@ class Map extends React.Component {
         </Col>
       );
     });
-
-    return <div className="">{info}</div>;
   }
 }
 

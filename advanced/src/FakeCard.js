@@ -224,7 +224,7 @@ class FakeCard extends Component {
               <Col span={2}>
                 <Meta
                   className="pt-1"
-                  avatar={[<Icon type="eye" />]}
+                  avatar={<Icon type="eye" />}
                   onClick={n => this.hideName(n)}
                 />
               </Col>
@@ -234,15 +234,15 @@ class FakeCard extends Component {
               <Col span={2}>
                 <Meta
                   className="pt-1 d-block"
-                  avatar={this.state.showEmail ? [<Icon type="mail" />] : null}
+                  avatar={this.state.showEmail ? <Icon type="mail" /> : null}
                 />
                 <Meta
                   className="pt-1"
-                  avatar={this.state.showPhone ? [<Icon type="phone" />] : null}
+                  avatar={this.state.showPhone ?<Icon type="phone" /> : null}
                 />
                 <Meta
                   className="pt-1"
-                  avatar={this.state.showWeb ? [<Icon type="global" />] : null}
+                  avatar={this.state.showWeb ? <Icon type="global" /> : null}
                 />
               </Col>
               <Col span={20} style={fancy}>

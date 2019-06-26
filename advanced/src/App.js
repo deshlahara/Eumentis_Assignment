@@ -14,20 +14,25 @@ class App extends Component {
   state = { data: [], preloader: true };
 
   // binding the function in a parent lets us use that functon without an arrow function in its child so that its directly called
-  constructor(props) {
-    super(props);
-    this.deleteLogic = this.deleteLogic.bind(this);
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.deleteLogic = this.deleteLogic.bind(this);
+  // }
 
   // fetching the data from JSON file
-  componentDidMount = async () => {
-    const api = await axios.get(`https://jsonplaceholder.typicode.com/users`);
+  // componentDidMount = async () => {
+  //   const api = await axios.get(`https://jsonplaceholder.typicode.com/users`);
+  //
+  //   console.log(api.data);
+  //
+  //   // updating the state
+  //   this.setState({ data: api.data, preloader: false });
+  // };
 
-    console.log(api.data);
+  componentDidMount() {
+    axios.get(`https://jsonplaceholder.typicode.com/users`).then(jsonData => this.setState({data: jsonData.data, preloader: false}))
 
-    // updating the state
-    this.setState({ data: api.data, preloader: false });
-  };
+  }
 
   // THIS IS AN APPLICATION OF LIFTING THE STATE UP
   deleteLogic = allCards => {
@@ -48,7 +53,7 @@ class App extends Component {
 
     // else condition
     return (
-      <div key={this.state.data.id}>
+      <div >
         {/* <Button type="button">
                     Click Me!
                 </Button> */}
@@ -62,6 +67,7 @@ class App extends Component {
           unique={this.state.data.id}
           hideName={this.hideName}
         />
+        {this.state.data.map((entry) => (<p key={entry.id}>{entry.name}</p>))}
       </div>
     );
   }
