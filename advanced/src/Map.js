@@ -3,10 +3,6 @@ import FakeCard from "./FakeCard";
 import { Col } from "antd";
 
 class Map extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { del: true };
-  }
 
   render() {
     const info = this.props.apiData.map(x => {
@@ -35,7 +31,7 @@ class Map extends React.Component {
       );
     });
 
-    return <div className="">{info} </div>;
+    return <div className="">{info}</div>;
   }
 }
 

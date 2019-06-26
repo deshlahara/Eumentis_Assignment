@@ -40,13 +40,13 @@ class App extends Component {
     });
   };
 
-  hideName = n => {};
-
   render() {
+
     if (this.state.preloader) {
       return <Spinner msg="Loading..." />;
     }
 
+    // else condition
     return (
       <div key={this.state.data.id}>
         {/* <Button type="button">

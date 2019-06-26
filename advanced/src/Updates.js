@@ -2,8 +2,9 @@ import React, { Component } from "react";
 
 import { Modal, Form, Input } from "antd";
 
+ // name of the newly created form inside ()
 const Updates = Form.create()(
-  // name of the newly created form inside ()
+ 
 
   class extends Component {
     render() {

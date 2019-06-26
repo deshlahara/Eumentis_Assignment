@@ -47,7 +47,7 @@ class FakeCard extends Component {
   // state = {icon: <Icon type="heart" theme="twoTone" twoToneColor="red" />}
   // const {}
 
-  onIconClick = e => {
+  onIconClick = () => {
     // e.preventDefault();
     this.setState(state => ({
       // state is a callback that is called and checks the current state of the icon anf toggles it
@@ -56,35 +56,35 @@ class FakeCard extends Component {
   };
 
   hideName = n => {
-    // n.preventDefault();
+    n.preventDefault();
     this.setState(nameState => ({
       showName: !nameState.showName
     }));
   };
 
   hideEmail = e => {
-    // e.preventDefault();
+    e.preventDefault();
     this.setState(emailState => ({
       showEmail: !emailState.showEmail
     }));
   };
 
   hidePhone = p => {
-    // p.preventDefault();
+    p.preventDefault();
     this.setState(phoneState => ({
       showPhone: !phoneState.showPhone
     }));
   };
 
   hideWeb = w => {
-    // w.preventDefault();
+    w.preventDefault();
     this.setState(webState => ({
       showWeb: !webState.showWeb
     }));
   };
 
   hideImage = i => {
-    // i.preventDefault();
+    i.preventDefault();
     this.setState(imgState => ({
       showImg: !imgState.showImg
     }));
